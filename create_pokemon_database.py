@@ -21,6 +21,8 @@ db_name = 'pokebda'
 types_col_name = 'types'
 pkmn_col_name = 'pokemon'
 
+populate_pokemon = False
+populate_types = True
 
 
 client = pymongo.MongoClient(os.environ.get('MONGO_URI'))
@@ -40,26 +42,22 @@ if pkmn_col_name not in db.list_collection_names():
 
 pokemon = db[pkmn_col_name]
 
-# Get n of pokemons
-res = requests.get(urljoin(api_url,'pokemon/'), params={'limit': 1})
-res_data = json.loads(res.text)
-n_pokemons = res_data['count']
-pokemon_ids = range(1, n_pokemons+1)
+# Populate pokemons collection
+if populate_pokemon:
+    # We know that there exist 898 pokemon
+    n_pokemon = 898
+    pokemon_ids = range(1, n_pokemon +1)
+    print("there are {} different pokemon".format(n_pokemon))
 
-# time.sleep(5)
-# print(res_data)
+    print("Populating pokemon collection")
+    for p_id in pokemon_ids:    
+        print(urljoin(api_url, 'pokemon/{}/'.format(p_id)))
 
-print("there are {} different pokemon".format(n_pokemons))
+        res = requests.get(urljoin(api_url, 'pokemon/{}/'.format(p_id)))
+        res_data = json.loads(res.text)
 
-
-for p_id in pokemon_ids:
-    
-    print(urljoin(api_url, 'pokemon/{}/'.format(p_id)))
-    res = requests.get(urljoin(api_url, 'pokemon/{}/'.format(p_id)))
-    res_data = json.loads(res.text)
-    print(res_data)
-    pokemon.insert_one(res_data)
-    # time.sleep(1)
-    break
+        pokemon.insert_one(res_data)
+        
+        time.sleep(0.2) # Just in case
 
 
