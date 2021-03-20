@@ -9,5 +9,5 @@ In this case i have opted for the [Pokemon API](https://pokeapi.co/) and stored 
 3. Launch `pokemon_notebook.ipynb`
 4. Enjoy!
 
-**Note:** There is currently an issue with embedded image visualization on the notebook, looking for an elegant fix
+**Note:** It looks kinda bad on the GitHub preview, it was done in Juptyer Lab where it looks way better.
 
