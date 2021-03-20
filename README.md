@@ -1,9 +1,9 @@
-# BDA-Project
-This project consisted on gathering data dumping it into a database and extracting some basic knowledge.
+# PokeAPI
+Simple project consiting on gathering data, dumping it into a database and extracting some basic knowledge to practice some data science.
 
-In my case i opted for using the [Pokemon API](https://pokeapi.co/) and storing some simple documents on a local MongoDB database.
+In this case i have opted for the [Pokemon API](https://pokeapi.co/) and stored some data on a local MongoDB collection.
 
-## How to run
+## How to use
 1. Set up an `env` file containing the URI of your MongoDB database in a variable named `MONGO_URI`:
 2. Run `python create_pokemon_database.py`
 3. Launch `pokemon_notebook.ipynb`
